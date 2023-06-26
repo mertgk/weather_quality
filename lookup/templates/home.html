@@ -1,4 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello World!!</h1>
+
+
+{% if zipcode %}
+    {{ zipcode }}
+{% endif %}
+
+{% if api %}
+    
+    {%if api == "Error" %}
+        There was an Error, please try again.
+
+    {% else %} 
+    
+        <div class="jumbotron {{ category_color }}">
+            <h1 class="display-4">{{ api.0.Category.Name }}<br/><br/></h1>
+            <p class="lead">Current {{ api.0.ReportingArea }} {{ api.0.AQI }}</p>
+
+            <p>{{ category_description }}</p>
+
+
+
+            <p class="lead">
+             <a class="btn btn-primary btn-lg" href= "{% url 'AQI' %}"" role="button">About</a>
+            </p>
+        </div>
+    
+
+
+
+    
+    {% endif %}
+
+
+{% endif %}
+
 {% endblock %} 
